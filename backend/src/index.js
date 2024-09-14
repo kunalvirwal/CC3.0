@@ -2,9 +2,11 @@ const express = require("express");
 const app = express();
 const cookieParser = require("cookie-parser");
 const path = require("path");
+const configs = require("./configs/Database");
+const mongoose = require("mongoose");
 
 const middlewares = require("./middlewares/Middlewares")
-
+configs.ConnectDB();
 require("dotenv").config();
 
 const PORT = process.env.PORT || 5000;

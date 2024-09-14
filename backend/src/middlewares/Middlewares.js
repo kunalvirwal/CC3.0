@@ -14,7 +14,7 @@ function auth_user(req,res,next){
         try {
             const token = authorization.split(' ')[0];
             const payload = jwt.verify(token, process.env.SECRET_KEY);
-            req.user = payload.data;
+            req.user = payload;
         } catch (err) {
             return res.status(401).send({error:"invalid jwt token"});  // Invalid JWT token
         }

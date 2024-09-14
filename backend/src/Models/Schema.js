@@ -16,6 +16,7 @@ const Person = mongoose.model("Person", personSchema);  // collection person
 const issueSchema = new Schema({
     senderID:{type : String, required: true},
     senderWard:{type : String, required: true},
+    issueWard:{type : String, required: true},
     heading:{type : String, required: true},
     body:{type : String},
     upvotes:{type : Number, required: true},
