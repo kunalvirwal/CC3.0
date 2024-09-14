@@ -15,4 +15,10 @@ router.get("/ward/:wardName",(req,res)=>{
     controllers.ward(req,res);
 });
 
+router.post("/upvote/:issueID",(req,res)=>{
+    console.log("UPVOTE");
+    // res.status(200).send()
+    controllers.upvote(req,res);
+});
+
 module.exports = router
