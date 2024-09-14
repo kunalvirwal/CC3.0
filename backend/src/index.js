@@ -13,8 +13,9 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+app.use("",middlewares.auth_user)
 app.use("",require("./routes/Routes"))
 
-http.listen(PORT,(error)=>{
+app.listen(PORT,(error)=>{
     if (error) throw error;
 })
