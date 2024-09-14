@@ -4,9 +4,7 @@ const controllers = require("../controllers/Controllers")
 const middlewares = require("../middlewares/Middlewares")
 
 router.get("/login",(req,res)=>{
-    console.log("hello")
-
-    // controllers.login(req,res);
+    controllers.login(req,res);
 });
 
 router.get("/ward/:wardName",(req,res)=>{

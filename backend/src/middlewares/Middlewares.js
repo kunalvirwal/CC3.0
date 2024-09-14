@@ -7,9 +7,8 @@ function auth_user(req,res,next){
 
     console.log(req.path);
     if (req.path =="/login"){
-        next()
+        return next();
     }
-    
     if (authorization ) {
         try {
             const token = authorization.split(' ')[0];

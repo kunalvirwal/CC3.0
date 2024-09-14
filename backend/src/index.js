@@ -5,12 +5,13 @@ const path = require("path");
 const configs = require("./configs/Database");
 const mongoose = require("mongoose");
 
+const configs = require("./configs/Database")
 const middlewares = require("./middlewares/Middlewares")
 configs.ConnectDB();
 require("dotenv").config();
 
 const PORT = process.env.PORT || 5000;
-
+configs.ConnectDB()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
