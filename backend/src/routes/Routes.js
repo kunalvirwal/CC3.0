@@ -9,10 +9,10 @@ router.get("/login",(req,res)=>{
     // controllers.login(req,res);
 });
 
-router.get("/ward",(req,res)=>{
+router.get("/ward/:wardName",(req,res)=>{
     console.log("hello")
-    res.status(200).send()
-    // controllers.login(req,res);
+    // res.status(200).send()
+    controllers.ward(req,res);
 });
 
 module.exports = router

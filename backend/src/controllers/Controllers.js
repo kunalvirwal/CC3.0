@@ -1,16 +1,16 @@
 const bcrypt = require("bcrypt")
 const models = require("../models/Schema")
 
-// function login(){
-//     let voterID = req.body.voterID.trim();
-//     let inp_password = req.body.password.trim();
-//     let result = await models.User.find({voterID:voterID})
-//     if (result.length==1 && await bcrypt.compare(inp_password, result[0]["password"])){
+async function ward(req,res){
+    let wardName = req.params.wardName;
+    let result = await models.Issue.find({issueWard:wardName})
+    if (result.length==1){
+        res.send(result);
+    } else {
+        return res.status(406).send({error:"Invalid Ward Name"});
+    }
+}
 
-//         const token = utils.generateJWT(result[0]["name"],voterID,result[0]["_id"] )
-//         res.cookie("token", token, { httpOnly: true });
-//         res.status(201).redirect("/home");
-//     } else {
-//         return res.render("login");
-//     }
-// }
+module.exports= {
+    ward,
+}
