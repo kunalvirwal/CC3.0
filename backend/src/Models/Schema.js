@@ -34,13 +34,21 @@ const Issue = mongoose.model("Issue", issueSchema);  // collection person
 const wardSchema = new Schema({
     wardName: { type: String, required: true },
     tags: { type: [String], required: true },
-    wardMC: { type: String, required: true }
+    wardCouncillor: { type: String, required: true }
 })
 
 const Ward = mongoose.model("Ward", wardSchema);  // collection person
 
+const wardListSchema = new Schema({
+    wardName: { type: String, required: true }
+})
+
+const WardList = mongoose.model("WardList", wardSchema);  // collection person
+
+
 module.exports={
     Person,
     Issue,
-    Ward
+    Ward,
+    WardList
 }
