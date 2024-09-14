@@ -14,6 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use("",middlewares.auth_user)
+
 app.use("",require("./routes/Routes"))
 
 app.listen(PORT,(error)=>{

@@ -3,8 +3,16 @@ const router = express.Router();
 const controllers = require("../controllers/Controllers")
 const middlewares = require("../middlewares/Middlewares")
 
-router.get("/",(req,res)=>{
-    
+router.get("/login",(req,res)=>{
+    console.log("hello")
+
+    // controllers.login(req,res);
+});
+
+router.get("/ward",(req,res)=>{
+    console.log("hello")
+    res.status(200).send()
+    // controllers.login(req,res);
 });
 
 module.exports = router
