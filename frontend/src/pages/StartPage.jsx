@@ -23,32 +23,34 @@ function StartPage() {
   return (
     <div className="d-flex justify-content-center align-items-center text-center min-vh-100">
       <div className="strpage-box"> {/* Apply custom styles here if needed */}
-        <h1 className="str-head">Doubtify</h1>
-        <p className="str-p">Your personal <span className="str-span">Doubts-Archiver</span></p>
+        <h1 className="str-head">DigiComplaint</h1>
+        <p className="str-p"><span className="str-span">AI</span> powered <span className="str-span">Complaint Forum</span></p>
         <div>
           <Button onClick={routeChanger1}
             onMouseEnter={ishover1}
             onMouseLeave={isnothover1}
             style={hover1 ? {
                 
-              color: "rgb(113,44,249)",
+              color: "rgb(37, 190, 255)",
               backgroundColor: "white",
-              borderColor: "rgb(113, 44, 249)",
+              borderColor: "rgb(37, 190, 255)",
               fontFamily: "Poppins",
-              fontWeight: "400",
+              fontWeight: "700",
               fontStyle: "normal",
-              fontSize: "1.1rem"
+              fontSize: "0.9rem",
+              padding:"0"
             } : {
               color: "white",
-              backgroundColor: "rgb(113, 44, 249)",
-              borderColor: "rgb(113, 44, 249)",
+              backgroundColor: "rgb(37, 190, 255)",
+              borderColor: "rgb(37, 190, 255)",
               fontFamily: "Poppins",
-              fontWeight: "400",
+              fontWeight: "700",
               fontStyle: "normal",
-              fontSize: "1.1rem"
+              fontSize: "0.9rem",
+              padding:"0"
             }}
             variant="primary"
-            className="btn-startpage1 mx-2 my-3 py-2 px-5"
+            className="btn-startpage1 mx-3 my-0 py-1 px-3"
           >
             Login
           </Button>

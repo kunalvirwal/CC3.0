@@ -1,12 +1,14 @@
-// import React, { useState } from "react";
+import  { useState } from "react";
 import "./LoginForm.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import axios from "axios"
-import { useNavigate,useState} from "react-router-dom";
+import { useNavigate} from "react-router-dom";
+import { useAuthContext } from "../hooks/UseAuthContext.js";
 
 
 function LoginForm() {
+    const {dispatch} = useAuthContext
     let navigate = useNavigate()
 
     const [user, setUser] = useState({
@@ -32,7 +34,7 @@ function LoginForm() {
           console.log(response)  
           if (response.data.auth) {
             localStorage.setItem("token",response.data.token)
-            // dispatch({type:'LOGIN',payload:response.data})
+            dispatch({type:'LOGIN',payload:response.data})
             navigate("/home");
           } else {
             setError("Login failed. Please try again.");
@@ -76,32 +78,34 @@ function LoginForm() {
         <h1 className="login-h1">DigiComplaint</h1>
         <form action="/home" className="login-form d-flex flex-column justify-content-center align-items-center">
 
-            <input required autoComplete="off" className="login-input d-block my-3 p-2"
+            <input required autoComplete="off" className="login-input d-block my-2 p-2"
                 onChange={handleChange}
                 type="email"
                 name="voterId"
                 placeholder="Voter ID"
                 value={user.voterId}
             />
-            <input required autoComplete="off" type="password" name="password" className="login-input d-block my-3 p-2"
+            <input required autoComplete="off" type="password" name="password" className="login-input d-block my-2 p-2"
                 placeholder="Password" onChange={handleChange} value={user.password} />
-            <Button style={!hover1 ? {
-                color: "white",
-                backgroundColor: "rgb(113, 44, 249)",
-                borderColor: "rgb(113, 44, 249)",
-                fontFamily: "Poppins",
-                fontWeight: "700",
-                fontStyle: "normal",
-                fontSize: "1.1rem"
+            <Button style={hover1 ? {
+                 color: "rgb(37, 190, 255)",
+                 backgroundColor: "white",
+                 borderColor: "rgb(37, 190, 255)",
+                 fontFamily: "Poppins",
+                 fontWeight: "700",
+                 fontStyle: "normal",
+                 fontSize: "0.9rem",
+                 padding:"0"
             } : {
-                color: "rgb(113, 44, 249)",
-                backgroundColor: "white",
-                borderColor: "rgb(113, 44, 249)",
-                fontFamily: "Poppins",
-                fontWeight: "700",
-                fontStyle: "normal",
-                fontSize: "1.1rem"
-            }} type="submit" onClick={handleSubmit} onMouseEnter={ishover1} onMouseLeave={isnothover1} className='login-btn d-block px-5 my-3 py-2' variant="primary">Login</Button>
+                color: "white",
+              backgroundColor: "rgb(37, 190, 255)",
+              borderColor: "rgb(37, 190, 255)",
+              fontFamily: "Poppins",
+              fontWeight: "700",
+              fontStyle: "normal",
+              fontSize: "0.9rem",
+              padding:"0"
+            }} type="submit" onClick={handleSubmit} onMouseEnter={ishover1} onMouseLeave={isnothover1} className='login-btn d-block mx-3 my-2 py-1 px-3' variant="primary">Login</Button>
 
         </form>
     </div>

@@ -1,8 +1,26 @@
+import IssueForm from "../components/IssueForm.jsx";
+import IssueTile from "../components/IssueTile.jsx";
+import NavBar from "../components/NavBar.jsx";
+import "./HomePage.css"
 function HomePage(){
-    return(
-        <>
-            <p>You are authorised voila !!!</p>
-        </>
+    // const {user} = useAuthContext();
+    // const navigate = useNavigate();
+    // const logout = useLogout()
+
+    // const handleClick = () => {
+    //   logout()
+    //   navigate("/")
+    // }
+    return(     
+        <div>
+            <div>
+            <IssueTile/>
+            </div>
+            <div><IssueForm/></div>
+            <NavBar/>
+            
+            
+        </div>
     )
 }
 export default HomePage
