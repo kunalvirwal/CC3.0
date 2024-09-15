@@ -3,11 +3,11 @@ const router = express.Router();
 const controllers = require("../controllers/Controllers")
 const middlewares = require("../middlewares/Middlewares")
 
-router.get("/login",(req,res)=>{
+router.post("/login",(req,res)=>{
     controllers.login(req,res);
 });
 
-router.get("/ward/:wardName",(req,res)=>{
+router.post("/ward/:wardName",(req,res)=>{
     console.log("hello")
     controllers.ward(req,res);
 });
