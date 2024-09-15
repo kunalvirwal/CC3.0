@@ -1,4 +1,4 @@
-const models = require("../models/Schema")
+const models = require("../model/Schema")
 const mongoose = require("mongoose");
 const utils = require("../utils/Utils")
 
@@ -115,7 +115,26 @@ async function comment(req,res){
     res.status(201).send({response:"Commented Successfully"})
 }
 
+async function comparePrompt(req,res){
+    let issueWard = req.params.wardName;
+    let prompt = req.body.prompt
+    
+    if (prompt==undefined || issueWard==undefined ){
+        return res.status(406).send({error:"Invalid prompt or ward name"});
+    }
+    let result1 = await models.WardList.find({wardName:issueWard.trim()});
+    if (result1.length==0){
+        return res.status(406).send({error:"Invalid ward name"});
+    }
+    let result = await models.Issue.find({issueWard:issueWard});
+    let issueList = result.map((val) => {
+        return val.heading
+    })
+    let response = await utils.sensorAndRelate(prompt,issueList)
+    return res.status(200).send({response:response});
+    
 
+}
 
 
 module.exports= {
@@ -124,4 +143,5 @@ module.exports= {
     upvote,
     downvote,
     comment,
+    comparePrompt,
 }

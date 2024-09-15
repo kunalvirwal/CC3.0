@@ -27,7 +27,7 @@ const issueSchema = new Schema({
         content: { type: String, required: true },
         sentAt: { type: String, required: true }        
     }]} 
-})
+}) 
 
 const Issue = mongoose.model("Issue", issueSchema);  // collection person
 
