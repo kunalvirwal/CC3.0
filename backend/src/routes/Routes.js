@@ -8,8 +8,11 @@ router.post("/login",(req,res)=>{
 });
 
 router.post("/ward/:wardName",(req,res)=>{
-    console.log("hello")
     controllers.ward(req,res);
+});
+
+router.post("/createIssue",(req,res)=>{
+    controllers.createIssue(req,res);
 });
 
 router.post("/upvote/:issueID",(req,res)=>{
