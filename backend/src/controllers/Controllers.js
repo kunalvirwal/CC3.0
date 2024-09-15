@@ -1,4 +1,4 @@
-const models = require("../model/Schema")
+const models = require("../models/Schema")
 const mongoose = require("mongoose");
 const utils = require("../utils/Utils")
 
@@ -9,6 +9,8 @@ async function login(req,res){
     if (voterID==undefined ||inp_password==undefined){
         return res.status(406).send({error:"No voterID or password"});  // Invalid JWT token
     }
+    voterID = voterID.trim()
+    inp_password = inp_password.trim() 
     let result = await models.Person.find({voterID:voterID});
     if (result.length==1 && voterID==inp_password){
         const token = utils.generateJWT(voterID,result[0]["ward"])
@@ -24,15 +26,56 @@ async function login(req,res){
 
 
 async function ward(req,res){
-    let wardName = req.params.wardName;
-    let result = await models.Issue.find({issueWard:wardName})
-    if (result.length==1){
-        res.send(result);
-    } else {
-        return res.status(406).send({error:"Invalid Ward Name"});
+    let wardName = req.params.wardName.trim();
+    let result = await models.WardList.find({wardName:wardName})
+    if (result.length!=1){
+        return res.status(404).send({error:"Invali ward name"});
     }
+    result = await models.Issue.find({issueWard:wardName})
+    res.status(200).send(result)
 }
 
+async function createIssue(req,res){
+    let senderID = req.user.voterID;
+    let senderWard = req.user.wardName;
+    let issueWard = req.body.issueWard;
+    let heading = req.body.heading;
+    let body = req.body.body;
+    let tags = req.body.tags;
+    if (issueWard==undefined || heading==undefined || body==undefined || tags==undefined || heading.trim()==""){
+        return res.status(406).send({error:"Fields missing"});
+    }
+    let ward = await models.Ward.find({ward:issueWard.trim()})
+    
+    if (ward.length!=1){
+        return res.status(404).send({error:"Invalid ward name"});
+    }
+    ward= ward[0]
+    let invalid = false
+    tags.forEach(val => {
+        if (!ward["_doc"]["wardTag"].includes(val)){
+           invalid = true
+        }
+    });
+    if (invalid){
+        return res.status(406).send({error:"Invalid ward tags"})
+    }
+    let issue = new models.Issue({
+        senderID : senderID,
+        senderWard : senderWard,
+        issueWard : issueWard.trim(),
+        heading : heading.trim(),
+        body : body,
+        upvotes : 0,
+        completed : false,
+        tags : tags,
+        messages : []
+    })
+
+    await issue.save()
+    return res.status(201).send({response:"Issue created successfully"})
+    
+}
 
 async function upvote(req,res){
     let issueID = req.params.issueID;
@@ -140,6 +183,7 @@ async function comparePrompt(req,res){
 module.exports= {
     login,
     ward,
+    createIssue,
     upvote,
     downvote,
     comment,
