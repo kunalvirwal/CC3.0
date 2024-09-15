@@ -1,0 +1,57 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: 'Noto Sans', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f8ff;
+}
+.comment-input-container {
+    width: 40vw;
+    display: flex;
+    gap: 1rem;
+}
+.comment-input {
+    flex-grow: 1;
+    padding: 0.75rem;
+    border: 2px solid rgb(37, 190, 255);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Noto Sans', sans-serif;
+    transition: all 0.3s ease;
+}
+.comment-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(37, 190, 255, 0.3);
+}
+.send-button {
+    padding: 0.75rem 1.5rem;
+    background-color: rgb(37, 190, 255);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-family: "Poppins", sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.send-button:hover {
+    background-color: white;
+    color: rgb(37, 190, 255);
+    box-shadow: 0 0 0 2px rgb(37, 190, 255);
+}
+@media (max-width: 768px) {
+    .comment-input-container {
+        width: 90vw;
+        flex-direction: column;
+    }
+    .send-button {
+        width: 100%;
+    }
+}

@@ -1,0 +1,19 @@
+.body_div{
+    display: flex;
+    flex-direction: row;
+    margin-top: 0;
+    position: absolute;
+    top: 12%;
+    left: 0;
+}
+
+.issues{
+    margin-left: 4%;
+    margin-right: 4%;
+}
+
+.issue_form{
+    margin-left: 4%;
+    margin-right: 4%;
+}
+

@@ -1,0 +1,35 @@
+
+.str-head{
+    font-size: 3rem ;
+      font-family: "Rubik Mono One", monospace;
+      font-weight: 400;
+      font-style: normal;
+      color: rgb(37, 190, 255);
+  }
+  .str-p{
+      font-family: "Poppins", sans-serif;
+      font-weight: 700;
+      font-style: normal;
+      font-size: 1rem;
+  }
+  .str-span{
+      color: rgb(37, 190, 255);
+      font-family: "Poppins", sans-serif;
+      font-weight: 700;
+      font-style:normal;
+      font-size: 1rem;
+  }
+  .btn-startpage1{
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 1rem;
+  }
+  .btn-startpage2{
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 1rem;
+  }
+  
+  
