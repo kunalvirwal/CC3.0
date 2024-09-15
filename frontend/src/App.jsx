@@ -1,7 +1,8 @@
-import { BrowserRouter } from "react-router-dom";
-import HomePage from "./pages/HomePage"
+// import { BrowserRouter } from "react-router-dom";
+// import Comment from "./components/Comments.jsx"
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import InputComment from "./components/Input.jsx";
 // import RoutesD from "./Routes"
 
 // import React from "react"
@@ -10,9 +11,10 @@ function App() {
 
   return (
     // <RoutesD/>
-    <BrowserRouter>
-     <HomePage/>
-    </BrowserRouter>
+    // <BrowserRouter>
+    //  <HomePage/>
+    // </BrowserRouter>
+    <InputComment/>
    
   )
 }

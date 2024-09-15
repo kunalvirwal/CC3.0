@@ -12,7 +12,7 @@ function IssueTile(){
         </div>
         <p className="issue-body">There has been no water supply in Block A for the past 3 hours. This is causing significant inconvenience to the residents. We request immediate attention to this matter.</p>
         <div className="action-buttons">
-        <button className="action-button comment-button">Add a Comment</button>
+        <button className="action-button comment-button">Comments</button>
             <button className="action-button complete-button" disabled>Completed</button>
             
         </div>

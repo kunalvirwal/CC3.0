@@ -12,14 +12,12 @@ function HomePage(){
     //   navigate("/")
     // }
     return(     
-        <div>
-            <div>
+        <div className="body_div" >
+            <div className="issues">
             <IssueTile/>
             </div>
-            <div><IssueForm/></div>
+            <div className="issue_form"><IssueForm/></div>
             <NavBar/>
-            
-            
         </div>
     )
 }
