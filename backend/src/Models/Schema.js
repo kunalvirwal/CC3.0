@@ -21,10 +21,10 @@ const issueSchema = new Schema({
     body:{type : String},
     upvotes:{type : Number, required: true},
     completed:{type : Boolean, required: true},
+    tags:{ type: [String], required: true },
     messages:{ type : [{
         sender: { type: String, required: true },
         content: { type: String, required: true },
-        tags:{ type: [String], required: true },
         sentAt: { type: String, required: true }        
     }]} 
 })

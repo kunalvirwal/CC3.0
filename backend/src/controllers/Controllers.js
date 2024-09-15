@@ -4,8 +4,11 @@ const utils = require("../utils/Utils")
 
 
 async function login(req,res){
-    let voterID = req.body.voterID.trim();
-    let inp_password = req.body.password.trim();
+    let voterID = req.body.voterID;
+    let inp_password = req.body.password;
+    if (voterID==undefined ||inp_password==undefined){
+        return res.status(406).send({error:"No voterID or password"});  // Invalid JWT token
+    }
     let result = await models.Person.find({voterID:voterID});
     if (result.length==1 && voterID==inp_password){
         const token = utils.generateJWT(voterID,result[0]["ward"])
@@ -87,6 +90,32 @@ async function downvote(req,res){
 }
 
 
+async function comment(req,res){
+    let issueID = req.params.issueID;
+    let userID = req.user.voterID;
+    let content = req.body.content
+    if (!mongoose.Types.ObjectId.isValid(issueID) || content==undefined){
+        return res.status(406).send({error:"Invalid Issue ID"});
+    }
+    content = content.trim();
+    if (content == ""){
+        return res.status(406).send({error:"Empty message content"});
+    }
+    let issue = await models.Issue.find({"_id":issueID});
+    issue=issue[0]
+    let d = new Date(Date.now())
+    let dateNtime = String(d).slice(4, 15)+" "+d.getHours()+":"+d.getMinutes()
+    issue.messages.unshift({
+        sender:userID,
+        content:content,
+        sentAt:dateNtime
+    })
+
+    await issue.save();
+    res.status(201).send({response:"Commented Successfully"})
+}
+
+
 
 
 module.exports= {
@@ -94,4 +123,5 @@ module.exports= {
     ward,
     upvote,
     downvote,
+    comment,
 }

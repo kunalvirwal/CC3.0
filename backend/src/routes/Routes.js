@@ -20,8 +20,8 @@ router.post("/downvote/:issueID",(req,res)=>{
     controllers.downvote(req,res);
 });
 
-// router.post("/comment/:issueID",(req,res)=>{
-//     controllers.comment(req,res);
-// });
+router.post("/comment/:issueID",(req,res)=>{
+    controllers.comment(req,res);
+});
 
 module.exports = router
