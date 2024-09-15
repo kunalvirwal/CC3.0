@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
@@ -7,14 +8,20 @@ import './NavBar.css';
 import { useLogout } from '../hooks/UseLogout.js';
 import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../hooks/UseAuthContext.js';
-import { useState } from 'react';
 import axios from 'axios';
+import { useUser } from '../context/UserContext.jsx';
 
-function NavBar() {
+function NavBar(props) {
   const { user } = useAuthContext();
-  const [setDoubts] = useState([]);
+  const { user_details } = useUser();
   const [selectedOption, setSelectedOption] = useState("");
-  const [options] = useState([]);
+
+  // Set the default selected option to the user's ward when component mounts or user_details changes
+  useEffect(() => {
+    if (user_details && user_details.ward) {
+      setSelectedOption(user_details.ward);
+    }
+  }, [user_details]);
 
   const handleChange = async (event) => {
     const { value } = event.target;
@@ -22,15 +29,14 @@ function NavBar() {
     console.log("Selected value: " + value);
 
     try {
-      const response = await axios.post("http://localhost:5000/home/filter", {
-        topic: value
-      }, {
+      const response = await axios.get(`http://localhost:5000/ward/${value}`, {
         headers: {
-          'Authorization': `Bearer ${user}`,
+          'Authorization': `Bearer ${user.user.token}`,
         }
       });
       console.log(response);
-      setDoubts(response.data);
+      // eslint-disable-next-line react/prop-types
+      props.setIssues(response.data);
     } catch (error) {
       console.error(error);
     }
@@ -54,7 +60,7 @@ function NavBar() {
             <form className="px-2">
               <select className="form-select" id="select-option" value={selectedOption} onChange={handleChange}>
                 <option value="">Select a Ward</option>
-                {options.map((option) => (
+                {user_details.totalWards && user_details.totalWards.map((option) => (
                   <option key={option} value={option}>
                     {option}
                   </option>
