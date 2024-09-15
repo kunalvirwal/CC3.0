@@ -1,10 +1,10 @@
 API Structure
 
-GET: /login
+POST: /login
     recieves {voterID:"" , password:""}
     sends {ward:{ward details straight from db} , wards:[""] , token:"" }
 
-GET: /ward/:wardName
+POST: /ward/:wardName
     recieve Header: Authentication bearer
     send {issues:[straight from db by compairing ward]}
 
@@ -17,4 +17,9 @@ POST: /downvote/:issueID
     send {error:"Not Upvoted"} OR {response:"Removed Upvote"}
 
 POST: /comment/:issueID
-    recieve Header: Authentication bearer AND {}
+    recieve Header: Authentication bearer AND {content:""}
+    send {response:"Commented Successfully"} OR {error:"Empty message content"}
+
+POST: /compareIssues/:wardName
+    recieve Header: Authentication bearer AND {prompt:""}
+    send {response:""}

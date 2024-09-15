@@ -24,4 +24,8 @@ router.post("/comment/:issueID",(req,res)=>{
     controllers.comment(req,res);
 });
 
+router.post("/compareIssues/:wardName",(req,res)=>{
+    controllers.comparePrompt(req,res);
+});
+
 module.exports = router
